@@ -3,7 +3,6 @@ package com.cloudcenturion.springdemo.controller;
 import com.cloudcenturion.springdemo.domain.RestBCrypt;
 import com.cloudcenturion.springdemo.domain.RestHello;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
