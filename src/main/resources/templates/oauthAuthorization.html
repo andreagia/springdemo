@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Authorization</title>
+    <link href="<c:url value="/css/styles.css"/>" rel="Stylesheet" type="text/css"/>
+</head>
+
+<body>
+
+
+
+<h1>Do you allow the application "${client.clientId}" to access your private data?</h1>
+
+<th:url value="/oauth/authorize" var="authorizeUrl"/>
+
+<th:form action="${authorizeUrl}" method="post">
+    <input name="user_oauth_approval" value="true" type="hidden"/>
+    <ul>
+        <th:forEach items="${scopes}" var="scope">
+            <li>${scope.key}: <input type="radio" name="${scope.key}" value="true" checked> Approve</input>
+                <input type="radio" name="${scope.key}" value="false">Deny</input>
+            </li>
+
+        </th:forEach>
+    </ul>
+    <label><input name="authorize" value="Submit" type="submit"></label>
+</th:form>
+</body>
+</html>

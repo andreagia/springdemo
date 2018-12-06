@@ -13,13 +13,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.util.matcher.AndRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+//@Order(2)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -50,7 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/","/rest/bcrypt").permitAll()
                 .antMatchers("/admin").access("hasAnyRole('ROLE_ADMIN')")
-                .antMatchers("/user").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+                .antMatchers("/user","/rest/**","/oauth/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
